@@ -9,6 +9,10 @@ import (
 
 var removeIndexRegex = regexp.MustCompile(`\[\d+\]`)
 
+// Mask masks the input JSON string based on the provided maskPaths.
+// maskPaths is a list of JSON paths that should be masked.
+// maskStr is the string that will replace the masked values.
+// The function returns the masked JSON string.
 func Mask(input string, maskPaths []string, maskStr string) (string, error) {
 	maskPathsMap := make(map[string]bool)
 	for _, path := range maskPaths {
@@ -29,6 +33,11 @@ func Mask(input string, maskPaths []string, maskStr string) (string, error) {
 	return string(maskedBytes), nil
 }
 
+// maskWithPaths recursively masks the input object based on the provided maskPaths.
+// maskPaths is a map of JSON paths that should be masked.
+// maskStr is the string that will replace the masked values.
+// path is the current path of the object in the JSON.
+// The function returns the masked object.
 func maskWithPaths(
 	input reflect.Value,
 	maskPaths map[string]bool,
@@ -92,6 +101,8 @@ func maskWithPaths(
 	return input.Interface(), nil
 }
 
+// isMaskedPath checks if the path is in the maskPaths map.
+// removeIndexRegex is used to remove array indexes from the path.
 func isMaskedPath(path string, maskPaths map[string]bool) bool {
 	_, ok := maskPaths[removeIndexRegex.ReplaceAllString(path, "[]")]
 	return ok
