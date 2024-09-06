@@ -54,7 +54,7 @@ func maskWithPaths(
 		return reflect.ValueOf(nil), nil
 	}
 
-	// check if custom assertion is defined for the path
+	// check if the path should be masked
 	if isMaskedPath(path, maskPaths) {
 		return maskStr, nil
 	}
