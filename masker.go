@@ -49,8 +49,6 @@ func maskWithPaths(
 	if isMaskedPath(path, maskPaths) {
 		return maskStr, nil
 	}
-	// print input kind and value
-	fmt.Printf("Path:%s, kind: %v, value: %v\n", path, input.Kind(), input.Interface())
 
 	switch input.Kind() {
 	case reflect.Struct:
