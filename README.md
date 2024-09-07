@@ -26,8 +26,8 @@ How to use:
 		"$.jobs[].name",
 		"$.jobs[].list[]",
 	}
-
-	masked, err := masker.Mask(jsonRaw, maskedPaths, "[REDACTED]")
+	masker := masker.NewMasker(maskPaths, withFixedMaskString("[REDACTED]"), withDebugMode())
+	masked, err := masker.Mask(jsonRaw, maskedPaths)
 	if err != nil {
 		panic(err)
 	}
