@@ -135,7 +135,7 @@ func TestMask_genericFields(t *testing.T) {
 
 	for _, tt := range testTable {
 		t.Run(tt.name, func(t *testing.T) {
-			masker := NewMasker(tt.maskPaths, withFixedMaskString("[REDACTED]"), withDebugMode())
+			masker := NewMasker(tt.maskPaths, WithFixedMaskString("[REDACTED]"), WithDebugMode())
 			output, err := masker.Mask(tt.input, tt.maskPaths)
 			assert.Equal(t, tt.expected, output)
 			if tt.expectedErr != nil {

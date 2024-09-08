@@ -21,19 +21,19 @@ type masker struct {
 
 type option func(*masker)
 
-func withMaskFunc(maskFunc func(field any) string) option {
+func WithMaskFunc(maskFunc func(field any) string) option {
 	return func(m *masker) {
 		m.maskFunc = maskFunc
 	}
 }
 
-func withFixedMaskString(maskStr string) option {
-	return withMaskFunc(func(field any) string {
+func WithFixedMaskString(maskStr string) option {
+	return WithMaskFunc(func(field any) string {
 		return maskStr
 	})
 }
 
-func withDebugMode() option {
+func WithDebugMode() option {
 	return func(m *masker) {
 		m.isDebugMode = true
 	}
